@@ -16,12 +16,12 @@ class GiphyViewHolder(
 
     private val imageBuilder = ImageProvider.Builder()
 
-    fun bindData(gif: Gif, gifItemClickListener: GifItemClickListener) {
+    fun bindData(gif: Gif, gifItemClickListener: GifItemClickListener?) {
         imageBuilder.url(gif.url).into(itemView.gifImageView)
 //        imageBuilder.url("http://media2.giphy.com/media/FiGiRei2ICzzG/giphy.gif").into(itemView.gifImageView)
 
         itemView.setOnClickListener {
-            gifItemClickListener.onItemClick(gif)
+            gifItemClickListener?.onItemClick(gif)
         }
     }
 }

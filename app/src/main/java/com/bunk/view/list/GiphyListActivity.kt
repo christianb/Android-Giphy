@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val TAG = GiphyListActivity::class.java.simpleName
 
-private const val VERTICAL_SPACE_HEIGHT = 50
+private const val SPAN_COUNT = 3
 
 class GiphyListActivity : AppCompatActivity() {
 
@@ -31,7 +31,7 @@ class GiphyListActivity : AppCompatActivity() {
 
         with(recyclerView) {
             adapter = giphyListAdapter
-            layoutManager = GridLayoutManager(this@GiphyListActivity, 3)
+            layoutManager = GridLayoutManager(context, SPAN_COUNT)
 //            addItemDecoration(VerticalSpaceItemDecoration(VERTICAL_SPACE_HEIGHT))
 //            addItemDecoration(
 //                androidx.recyclerview.widget.DividerItemDecoration(

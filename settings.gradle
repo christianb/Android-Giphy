@@ -1,1 +1,11 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if ( requested.id.id == 'io.gitlab.arturbosch.detekt' ) {
+                useVersion detekt_version
+            }
+        }
+    }
+}
+
 include ':app', ':domain', ':data'

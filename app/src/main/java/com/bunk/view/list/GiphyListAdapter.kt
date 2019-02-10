@@ -7,7 +7,7 @@ import com.bunk.domain.model.Gif
 
 class GiphyListAdapter : ListAdapter<Gif, GiphyViewHolder>(DIFF_UTIL_ITEM_CALLBACK) {
 
-    lateinit var gifItemClickListener: GifItemClickListener
+    var gifItemClickListener: GifItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = GiphyViewHolder(parent)
 

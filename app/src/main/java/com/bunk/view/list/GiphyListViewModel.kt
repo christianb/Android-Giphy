@@ -14,7 +14,7 @@ private val TAG = GiphyListViewModel::class.java.simpleName
 class GiphyListViewModel(
     private val getGifsUseCase: GetGifsUseCase,
     private val observeOnScheduler: ObserveOnScheduler
-): ViewModel() {
+) : ViewModel() {
 
     private val gifLiveData = MutableLiveData<List<Gif>>()
     fun gifLiveData(): LiveData<List<Gif>> = gifLiveData

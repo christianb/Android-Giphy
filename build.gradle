@@ -16,12 +16,35 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
+plugins {
+    id "io.gitlab.arturbosch.detekt"
+}
+
+detekt {
+    version = "$detekt_version"
+    profile("main") {
+        input = "$projectDir"
+        config = "$projectDir/config/detekt-ruleset.yml"
+        filters = ".*/resources/.*,.*/tmp/.*"
+        output = "${project.buildDir}/reports/detekt.xml"
+        parallel = true
+        disableDefaultRuleSets = false
     }
 }
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
+        jcenter()
+        google()
+    }
+}
+
+dependencies {
+    detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

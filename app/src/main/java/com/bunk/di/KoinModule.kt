@@ -37,16 +37,8 @@ val module = org.koin.dsl.module.module {
     factory<GiphyDataSource> { GiphyDataSourceImpl(get(), get()) }
     factory<GetGifsUseCase> { GetGifsUseCase(get()) }
 
-
-//    single<GitHubApi> { get<Retrofit>().create(GitHubApi::class.java) }
-////    factory<GitHubDataSource> { GitHubDataSourceImpl(get()) }
-//    factory<ObservableProvider> { ObservableProvider() }
-//    factory<GitHubRepository> { GitHubRepositoryImpl(get()) }
-//
     viewModel { GiphyListViewModel(get(), get()) }
-////    viewModel { DetailsViewModel(get(), get(), get(), get()) }
-//
+
     factory<ObserveOnScheduler> { ObserveOnSchedulerImpl() }
     factory<SubscribeOnScheduler> { SubscribeOnSchedulerImpl() }
 }
-

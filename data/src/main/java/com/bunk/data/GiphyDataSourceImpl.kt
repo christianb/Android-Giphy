@@ -13,7 +13,7 @@ class GiphyDataSourceImpl(
         giphyApi.getGifs()
             .subscribeOn(subscribeOnScheduler.io)
             .map { mediaResponse ->
-                return@map mediaResponse.data.map { media ->
+                mediaResponse.data.map { media ->
                     Gif(media.id, media.images.downsizedLarge.url)
                 }
             }

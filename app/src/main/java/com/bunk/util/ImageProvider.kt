@@ -6,7 +6,7 @@ import com.bumptech.glide.load.model.GlideUrl
 
 class ImageProvider {
     class Builder {
-        private lateinit var url: String
+        private var url: String? = null
 
         fun url(url: String): Builder {
             this.url = url
