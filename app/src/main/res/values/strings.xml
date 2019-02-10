@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Giphy</string>
+    <string name="a_gif">a GIF</string>
 </resources>
