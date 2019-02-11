@@ -5,6 +5,8 @@ This project fetches gifs from Giphy https://developers.giphy.com/
 * Clean Architecture
 * Modules: App, Data, Domain, Common
 
+![Modules Overview](https://github.com/christianb/GiphyAndroid/blob/master/module_overview.png)
+
 ## Testing
 * UnitTests with JUnit.
 * No lint warnings & error.
