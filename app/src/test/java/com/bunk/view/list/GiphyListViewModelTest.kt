@@ -2,7 +2,6 @@ package com.bunk.view.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bunk.common.TestSchedulerProvider
-import com.bunk.data.api.DEFAULT_LIMIT
 import com.bunk.domain.GetGifsUseCase
 import com.bunk.domain.model.Gif
 import com.bunk.view.R
@@ -30,14 +29,25 @@ class GiphyListViewModelTest {
     }
 
     @Test
-    fun `onCreate should forward gif list when successful`() {
+    fun `onCreate should load maxPages`() {
         val gif: Gif = mock()
         val gifList: List<Gif> = listOf(gif)
-        whenever(getGifsUseCase.getGifs(START_PAGE * DEFAULT_LIMIT)).thenReturn(Single.just(gifList))
+        whenever(getGifsUseCase.getGifs(anyInt())).thenReturn(Single.just(gifList))
 
         classToTest.onCreate()
 
-        assertThat(classToTest.gifLiveData().value).containsExactly(gif)
+        assertThat(classToTest.gifLiveData().value).hasSize(MAX_PAGE)
+    }
+
+    @Test
+    fun `onCreate should contain item`() {
+        val gif: Gif = mock()
+        val gifList: List<Gif> = listOf(gif)
+        whenever(getGifsUseCase.getGifs(anyInt())).thenReturn(Single.just(gifList))
+
+        classToTest.onCreate()
+
+        assertThat(classToTest.gifLiveData().value).contains(gif)
     }
 
     @Test

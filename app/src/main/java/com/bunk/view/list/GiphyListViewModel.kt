@@ -13,7 +13,7 @@ import io.reactivex.rxkotlin.subscribeBy
 
 private val TAG = GiphyListViewModel::class.java.simpleName
 const val START_PAGE = 0
-private const val MAX_PAGE = 20
+const val MAX_PAGE = 20
 
 class GiphyListViewModel(
     private val getGifsUseCase: GetGifsUseCase,
