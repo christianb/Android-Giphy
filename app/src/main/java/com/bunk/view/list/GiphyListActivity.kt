@@ -36,14 +36,6 @@ class GiphyListActivity : AppCompatActivity() {
         with(recyclerView) {
             adapter = giphyListAdapter
             layoutManager = GridLayoutManager(context, SPAN_COUNT)
-//            addItemDecoration(VerticalSpaceItemDecoration(VERTICAL_SPACE_HEIGHT))
-//            addItemDecoration(
-//                androidx.recyclerview.widget.DividerItemDecoration(
-//                    context,
-//                    androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-//                )
-//            )
-//            addOnScrollListener(paginationScrollListener)
         }
 
         giphyListViewModel.gifLiveData().observe(this,

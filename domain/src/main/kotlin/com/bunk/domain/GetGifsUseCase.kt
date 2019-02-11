@@ -3,5 +3,5 @@ package com.bunk.domain
 class GetGifsUseCase(
     private val giphyDataSource: GiphyDataSource
 ) {
-    fun getGifs() = giphyDataSource.getGifs()
+    fun getGifs(offset: Int) = giphyDataSource.getGifs(offset)
 }

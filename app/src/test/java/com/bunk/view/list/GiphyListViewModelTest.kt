@@ -2,6 +2,7 @@ package com.bunk.view.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bunk.common.TestSchedulerProvider
+import com.bunk.data.api.DEFAULT_LIMIT
 import com.bunk.domain.GetGifsUseCase
 import com.bunk.domain.model.Gif
 import com.bunk.view.R
@@ -11,6 +12,7 @@ import io.reactivex.Single
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyInt
 
 class GiphyListViewModelTest {
 
@@ -31,7 +33,7 @@ class GiphyListViewModelTest {
     fun `onCreate should forward gif list when successful`() {
         val gif: Gif = mock()
         val gifList: List<Gif> = listOf(gif)
-        whenever(getGifsUseCase.getGifs()).thenReturn(Single.just(gifList))
+        whenever(getGifsUseCase.getGifs(START_PAGE * DEFAULT_LIMIT)).thenReturn(Single.just(gifList))
 
         classToTest.onCreate()
 
@@ -40,7 +42,7 @@ class GiphyListViewModelTest {
 
     @Test
     fun `onCreate should forward error when failure`() {
-        whenever(getGifsUseCase.getGifs()).thenReturn(Single.error(Exception()))
+        whenever(getGifsUseCase.getGifs(anyInt())).thenReturn(Single.error(Exception()))
 
         classToTest.onCreate()
 

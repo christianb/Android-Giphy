@@ -4,5 +4,5 @@ import com.bunk.domain.model.Gif
 import io.reactivex.Single
 
 interface GiphyDataSource {
-    fun getGifs(): Single<List<Gif>>
+    fun getGifs(offset: Int): Single<List<Gif>>
 }

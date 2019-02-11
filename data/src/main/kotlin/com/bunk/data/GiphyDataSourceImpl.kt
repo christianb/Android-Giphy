@@ -10,8 +10,8 @@ class GiphyDataSourceImpl(
     private val giphyApi: GiphyApi,
     private val subscribeOnScheduler: SubscribeOnScheduler
 ) : GiphyDataSource {
-    override fun getGifs(): Single<List<Gif>> =
-        giphyApi.getGifs()
+    override fun getGifs(offset: Int): Single<List<Gif>> =
+        giphyApi.getGifs(offset)
             .subscribeOn(subscribeOnScheduler.io)
             .map { mediaResponse ->
                 mediaResponse.data.map { media ->

@@ -1,7 +1,6 @@
 package com.bunk.data.api
 
 object GiphyApiFactory {
-
     private var giphyApi: GiphyApi? = null
 
     fun getGiphyApi(): GiphyApi {
