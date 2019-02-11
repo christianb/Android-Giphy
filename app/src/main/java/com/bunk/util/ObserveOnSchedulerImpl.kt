@@ -1,6 +1,6 @@
 package com.bunk.util
 
-import com.bunk.domain.util.ObserveOnScheduler
+import com.bunk.common.ObserveOnScheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class ObserveOnSchedulerImpl : ObserveOnScheduler {

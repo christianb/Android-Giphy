@@ -1,8 +1,9 @@
 package com.bunk.data
 
+import com.bunk.common.SubscribeOnScheduler
+import com.bunk.data.api.GiphyApi
 import com.bunk.domain.GiphyDataSource
 import com.bunk.domain.model.Gif
-import com.bunk.domain.util.SubscribeOnScheduler
 import io.reactivex.Single
 
 class GiphyDataSourceImpl(

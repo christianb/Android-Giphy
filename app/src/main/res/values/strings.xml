@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Giphy</string>
     <string name="a_gif">a GIF</string>
+    <string name="gif_load_error">Could not fetch gifs</string>
 </resources>

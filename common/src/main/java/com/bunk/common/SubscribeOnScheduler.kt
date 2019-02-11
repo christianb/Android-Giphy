@@ -1,4 +1,4 @@
-package com.bunk.domain.util
+package com.bunk.common
 
 import io.reactivex.Scheduler
 

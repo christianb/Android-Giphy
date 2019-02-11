@@ -1,4 +1,4 @@
-package com.bunk.data.response
+package com.bunk.data.api.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,0 +1,8 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'com.github.hauner.jarTest'
+
+dependencies {
+    // RxKotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+}

@@ -34,6 +34,7 @@ final glide_version = "4.8.0"
 dependencies {
     compile project(path: ':domain')
     compile project(path: ':data')
+    testCompile project (path: ':common', configuration: 'testArchives')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
@@ -45,22 +46,37 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
     // RxAndroid
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
 
     // RxKotlin
-    implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
+    /*******************/
+    /*     Testing     */
+    /*******************/
+
     testImplementation 'junit:junit:4.12'
+
+    // Mockito
+    testImplementation "org.mockito:mockito-core:${version_mockito}"
+    testImplementation "org.mockito:mockito-inline:${version_mockito}"
+    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.5.0") {
+        exclude module: 'kotlin-stdlib'
+        exclude module: 'kotlin-reflect'
+    }
+
+    // AssertJ
+    testImplementation('com.squareup.assertj:assertj-android:1.1.1') {
+        exclude module: 'support-annotations'
+    }
+
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    testImplementation "androidx.arch.core:core-testing:2.0.0"
 }
