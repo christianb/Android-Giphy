@@ -26,7 +26,7 @@ class GiphyListViewModel(
     private val errorLiveData = MutableLiveData<Int>()
     fun errorLiveData(): LiveData<Int> = errorLiveData
 
-    private var disosable: Disposable? = null
+    private var disposable: Disposable? = null
 
     fun onCreate() {
         loadNext(START_PAGE, MAX_PAGE)
@@ -38,21 +38,15 @@ class GiphyListViewModel(
         }
 
         val offset = currentPage * DEFAULT_LIMIT
-        disosable = getGifsUseCase.getGifs(offset)
+        disposable = getGifsUseCase.getGifs(offset)
             .observeOn(observeOnScheduler.androidMainThreadScheduler)
             .subscribeBy(
                 onSuccess = { gifList ->
-                    val list = ArrayList<Gif>()
+                    val list = gifLiveData.value ?: emptyList()
 
-                    gifLiveData.value?.let { oldGifList ->
-                        list.addAll(oldGifList)
-                    }
+                    gifLiveData.value = list.joinWith(gifList)
 
-                    list.addAll(gifList)
-
-                    gifLiveData.value = list
-
-                    val nextPage: Int = currentPage + 1
+                    val nextPage = currentPage + 1
                     loadNext(nextPage, maxPage)
                 },
                 onError = { errorLiveData.value = R.string.gif_load_error }
@@ -62,6 +56,13 @@ class GiphyListViewModel(
     override fun onCleared() {
         super.onCleared()
 
-        disosable?.dispose()
+        disposable?.dispose()
+    }
+
+    private fun List<Gif>.joinWith(otherList: List<Gif>): List<Gif> {
+        val list = ArrayList<Gif>()
+        list.addAll(this)
+        list.addAll(otherList)
+        return list
     }
 }

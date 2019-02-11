@@ -13,5 +13,5 @@ object GiphyApiFactory {
         return giphyApi
     }
 
-    private fun createGiphyApi() = RetrofitProvider.getRetrofit().create(GiphyApi::class.java)
+    private fun createGiphyApi() = RetrofitFactory.getRetrofit().create(GiphyApi::class.java)
 }

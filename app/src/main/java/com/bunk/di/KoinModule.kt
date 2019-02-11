@@ -2,11 +2,11 @@ package com.bunk.di
 
 import com.bunk.common.ObserveOnScheduler
 import com.bunk.common.SubscribeOnScheduler
+import com.bunk.common.SubscribeOnSchedulerImpl
 import com.bunk.data.GiphyDataSourceImpl
 import com.bunk.data.api.GiphyApiFactory
 import com.bunk.domain.GetGifsUseCase
 import com.bunk.domain.GiphyDataSource
-import com.bunk.domain.util.SubscribeOnSchedulerImpl
 import com.bunk.util.ObserveOnSchedulerImpl
 import com.bunk.view.list.GiphyListViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel

@@ -35,14 +35,15 @@ class GiphyDataSourceImplTest {
         val url = "url"
         val images = mock<Images>()
         val image = mock<Image>()
-        whenever(giphyApi.getGifs()).thenReturn(Single.just(mediaResponse))
+        val offset = 42
+        whenever(giphyApi.getGifs(offset)).thenReturn(Single.just(mediaResponse))
         whenever(mediaResponse.data).thenReturn(mediaList)
         whenever(media.id).thenReturn(mediaId)
         whenever(media.images).thenReturn(images)
-        whenever(images.downsizedLarge).thenReturn(image)
+        whenever(images.fixedWidthSmall).thenReturn(image)
         whenever(image.url).thenReturn(url)
 
-        classToTest.getGifs().subscribe(
+        classToTest.getGifs(offset).subscribe(
             { gifList ->
                 assertThat(gifList.first().id).isEqualTo(mediaId)
                 assertThat(gifList.first().url).isEqualTo(url)

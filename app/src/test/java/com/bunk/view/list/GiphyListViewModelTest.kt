@@ -6,6 +6,8 @@ import com.bunk.domain.GetGifsUseCase
 import com.bunk.domain.model.Gif
 import com.bunk.view.R
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.times
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.assertj.core.api.Assertions.assertThat
@@ -26,6 +28,17 @@ class GiphyListViewModelTest {
             getGifsUseCase,
             testSchedulerProvider.observeOnScheduler
         )
+    }
+
+    @Test
+    fun `onCreate should load MAX_PAGE`() {
+        val gif: Gif = mock()
+        val gifList: List<Gif> = listOf(gif)
+        whenever(getGifsUseCase.getGifs(anyInt())).thenReturn(Single.just(gifList))
+
+        classToTest.onCreate()
+
+        verify(getGifsUseCase, times(MAX_PAGE)).getGifs(anyInt())
     }
 
     @Test

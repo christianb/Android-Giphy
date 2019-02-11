@@ -17,7 +17,7 @@ class GiphyDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_giphy_detail)
 
         intent.getStringExtra(GIF_URL)?.let {
-            ImageProvider.Builder().url(it).into(detailGifImageView)
+            ImageProvider().url(it).into(detailGifImageView)
         }
     }
 

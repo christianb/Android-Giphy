@@ -15,7 +15,7 @@ class GiphyDataSourceImpl(
             .subscribeOn(subscribeOnScheduler.io)
             .map { mediaResponse ->
                 mediaResponse.data.map { media ->
-                    Gif(media.id, media.images.downsizedLarge.url)
+                    Gif(media.id, media.images.fixedWidthSmall.url)
                 }
             }
 }

@@ -1,6 +1,5 @@
-package com.bunk.domain.util
+package com.bunk.common
 
-import com.bunk.common.SubscribeOnScheduler
 import io.reactivex.schedulers.Schedulers
 
 class SubscribeOnSchedulerImpl : SubscribeOnScheduler {

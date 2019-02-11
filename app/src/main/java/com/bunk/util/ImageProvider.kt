@@ -5,16 +5,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 
 class ImageProvider {
-    class Builder {
-        private var url: String? = null
+    private var url: String? = null
 
-        fun url(url: String): Builder {
-            this.url = url
-            return this
-        }
+    fun url(url: String): ImageProvider {
+        this.url = url
+        return this
+    }
 
-        fun into(imageView: ImageView) {
-            Glide.with(imageView).asGif().load(GlideUrl(url)).into(imageView)
-        }
+    fun into(imageView: ImageView) {
+        Glide.with(imageView).asGif().load(GlideUrl(url)).into(imageView)
     }
 }
