@@ -18,7 +18,7 @@ const val MAX_PAGE = 20
 class GiphyListViewModel(
     private val getGifsUseCase: GetGifsUseCase,
     private val observeOnScheduler: ObserveOnScheduler
-) : ViewModel() {
+) : ViewModel(), GifItemClickListener {
 
     private val gifLiveData = MutableLiveData<List<Gif>>()
     fun gifLiveData(): LiveData<List<Gif>> = gifLiveData
@@ -27,6 +27,8 @@ class GiphyListViewModel(
     fun errorLiveData(): LiveData<Int> = errorLiveData
 
     private var disposable: Disposable? = null
+
+    var view: View? = null
 
     fun onCreate() {
         loadNext(START_PAGE, MAX_PAGE)
@@ -57,6 +59,11 @@ class GiphyListViewModel(
         super.onCleared()
 
         disposable?.dispose()
+        view = null
+    }
+
+    override fun onItemClick(gif: Gif) {
+        view?.openDetail(gif.url.high)
     }
 
     private fun List<Gif>.joinWith(otherList: List<Gif>): List<Gif> {
@@ -64,5 +71,9 @@ class GiphyListViewModel(
         list.addAll(this)
         list.addAll(otherList)
         return list
+    }
+
+    interface View {
+        fun openDetail(url: String)
     }
 }

@@ -15,7 +15,7 @@ class GiphyViewHolder(
 ) {
 
     fun bindData(gif: Gif, gifItemClickListener: GifItemClickListener?) {
-        ImageProvider().url(gif.url).into(itemView.gifImageView)
+        ImageProvider().url(gif.url.low).into(itemView.gifImageView)
 
         itemView.setOnClickListener {
             gifItemClickListener?.onItemClick(gif)

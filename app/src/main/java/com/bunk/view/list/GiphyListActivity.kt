@@ -15,18 +15,12 @@ private val TAG = GiphyListActivity::class.java.simpleName
 
 private const val SPAN_COUNT = 3
 
-class GiphyListActivity : AppCompatActivity() {
+class GiphyListActivity : AppCompatActivity(), GiphyListViewModel.View {
 
     private val giphyListViewModel: GiphyListViewModel by viewModel()
 
     private val giphyListAdapter = GiphyListAdapter().apply {
-        gifItemClickListener = object : GifItemClickListener {
-            override fun onItemClick(gif: Gif) {
-                GiphyDetailActivity.createIntent(this@GiphyListActivity, gif.url).let {
-                    startActivity(it)
-                }
-            }
-        }
+        gifItemClickListener = giphyListViewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +31,8 @@ class GiphyListActivity : AppCompatActivity() {
             adapter = giphyListAdapter
             layoutManager = GridLayoutManager(context, SPAN_COUNT)
         }
+
+        giphyListViewModel.view = this
 
         giphyListViewModel.gifLiveData().observe(this,
             Observer<List<Gif>> {
@@ -51,5 +47,15 @@ class GiphyListActivity : AppCompatActivity() {
         )
 
         giphyListViewModel.onCreate()
+    }
+
+    override fun openDetail(url: String) {
+        startActivity(GiphyDetailActivity.createIntent(this, url))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        giphyListAdapter.gifItemClickListener = null
     }
 }

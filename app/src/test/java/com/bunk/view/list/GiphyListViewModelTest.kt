@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bunk.common.TestSchedulerProvider
 import com.bunk.domain.GetGifsUseCase
 import com.bunk.domain.model.Gif
+import com.bunk.domain.model.Url
 import com.bunk.view.R
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
@@ -70,5 +71,20 @@ class GiphyListViewModelTest {
         classToTest.onCreate()
 
         assertThat(classToTest.errorLiveData().value).isEqualTo(R.string.gif_load_error)
+    }
+
+    @Test
+    fun `onItemClicked should open details`() {
+        val view = mock<GiphyListViewModel.View>()
+        val gif = mock<Gif>()
+        val url = mock<Url>()
+        val highUrl = "highUrl"
+        whenever(gif.url).thenReturn(url)
+        whenever(url.high).thenReturn(highUrl)
+
+        classToTest.view = view
+        classToTest.onItemClick(gif)
+
+        verify(view).openDetail(highUrl)
     }
 }
