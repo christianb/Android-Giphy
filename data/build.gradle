@@ -6,31 +6,31 @@ final retrofit_version = "2.5.0"
 dependencies {
     compile project(path: ':common')
     compile project(path: ':domain')
-    testCompile project (path: ':common', configuration: 'testArchives')
+    testCompile project(path: ':common', configuration: 'testArchives')
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    /*******************/
+    /** *****************/
     /*     Testing     */
-    /*******************/
+    /** *****************/
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junit_version"
 
     // Mockito
-    testImplementation "org.mockito:mockito-core:${version_mockito}"
-    testImplementation "org.mockito:mockito-inline:${version_mockito}"
-    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.5.0") {
+    testImplementation "org.mockito:mockito-core:$version_mockito"
+    testImplementation "org.mockito:mockito-inline:$version_mockito"
+    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version") {
         exclude module: 'kotlin-stdlib'
         exclude module: 'kotlin-reflect'
     }
 
     // AssertJ
-    testImplementation('com.squareup.assertj:assertj-android:1.1.1') {
+    testImplementation("com.squareup.assertj:assertj-android:$assertj_version") {
         exclude module: 'support-annotations'
     }
 }

@@ -60,18 +60,18 @@ dependencies {
     /*     Testing     */
     /*******************/
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$junit_version"
 
     // Mockito
-    testImplementation "org.mockito:mockito-core:${version_mockito}"
-    testImplementation "org.mockito:mockito-inline:${version_mockito}"
-    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:1.5.0") {
+    testImplementation "org.mockito:mockito-core:$version_mockito"
+    testImplementation "org.mockito:mockito-inline:$version_mockito"
+    testImplementation("com.nhaarman:mockito-kotlin-kt1.1:$mockito_kotlin_version") {
         exclude module: 'kotlin-stdlib'
         exclude module: 'kotlin-reflect'
     }
 
     // AssertJ
-    testImplementation('com.squareup.assertj:assertj-android:1.1.1') {
+    testImplementation("com.squareup.assertj:assertj-android:$assertj_version") {
         exclude module: 'support-annotations'
     }
 
