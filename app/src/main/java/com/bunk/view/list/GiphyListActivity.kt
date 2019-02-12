@@ -19,9 +19,7 @@ class GiphyListActivity : AppCompatActivity(), GiphyListViewModel.View {
 
     private val giphyListViewModel: GiphyListViewModel by viewModel()
 
-    private val giphyListAdapter = GiphyListAdapter().apply {
-        gifItemClickListener = giphyListViewModel
-    }
+    private val giphyListAdapter = GiphyListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +30,26 @@ class GiphyListActivity : AppCompatActivity(), GiphyListViewModel.View {
             layoutManager = GridLayoutManager(context, SPAN_COUNT)
         }
 
-        giphyListViewModel.view = this
+        giphyListAdapter.gifItemClickListener = giphyListViewModel
 
-        giphyListViewModel.gifLiveData().observe(this,
-            Observer<List<Gif>> {
-                giphyListAdapter.submitList(it)
-            }
-        )
+        val activity = this
+        with(giphyListViewModel) {
+            view = activity
 
-        giphyListViewModel.errorLiveData().observe(this,
-            Observer<Int> {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
-        )
+            gifLiveData().observe(activity,
+                Observer<List<Gif>> {
+                    giphyListAdapter.submitList(it)
+                }
+            )
 
-        giphyListViewModel.onCreate()
+            errorLiveData().observe(activity,
+                Observer<Int> {
+                    Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+                }
+            )
+
+            onCreate()
+        }
     }
 
     override fun openDetail(url: String) {

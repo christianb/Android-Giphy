@@ -13,6 +13,9 @@ class ImageProvider {
     }
 
     fun into(imageView: ImageView) {
-        Glide.with(imageView).asGif().load(GlideUrl(url)).into(imageView)
+        Glide.with(imageView.context)
+            .asGif()
+            .load(GlideUrl(url))
+            .into(imageView)
     }
 }
